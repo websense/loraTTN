@@ -1,0 +1,65 @@
+Notes for programing the LoRa nodes for sensors from christof.
+
+The programmer used for the programming has the technical documents at
+http://shop.myavr.com/systemboards%20and%20programmer/mySmartUSB%20light%20-%20AVR%20ISP%20programmer.htm?sp=article.sp.php&artID=200006
+
+1. You have to install the usb driver from the above link from
+USB-Driver for myAVR-products
+
+2. Next is install myAVR Prog tool that is available at
+http://shop.myavr.com/index.php?sp=download.sp.php&suchwort=dl112
+
+You run the exe file download form above and then you can burn. 
+check the working of your hardware tool e.g mySmartUSB light
+Be sure of correct comm port and powersupply should be inactive
+
+Now you can program AVR microcontroller through this tool. For programming through arduino, you have to add that board into the IDE.
+
+We have added the AVR board in the arduino IDE at the boards.txt file by the text sent by Christof.
+#############################################################
+
+TrueRadio.name=TrueRadio
+
+TrueRadio.vid.0=0x2341
+TrueRadio.pid.0=0x0043
+TrueRadio.vid.1=0x2341
+TrueRadio.pid.1=0x0001
+TrueRadio.vid.2=0x2A03
+TrueRadio.pid.2=0x0043
+TrueRadio.vid.3=0x2341
+TrueRadio.pid.3=0x0243
+
+TrueRadio.upload.tool=avrdude
+TrueRadio.upload.protocol=arduino
+TrueRadio.upload.maximum_size=32256
+TrueRadio.upload.maximum_data_size=2048
+TrueRadio.upload.speed=115200
+
+TrueRadio.bootloader.tool=avrdude
+TrueRadio.bootloader.low_fuses=0xFF
+TrueRadio.bootloader.high_fuses=0xDE
+TrueRadio.bootloader.extended_fuses=0xFD
+TrueRadio.bootloader.unlock_bits=0x3F
+TrueRadio.bootloader.lock_bits=0x0F
+TrueRadio.bootloader.file=optiboot/optiboot_atmega328.hex
+
+TrueRadio.build.mcu=atmega328p
+TrueRadio.build.f_cpu=8000000L
+TrueRadio.build.board=AVR_UNO
+TrueRadio.build.core=arduino
+TrueRadio.build.variant=standard
+************************************************************
+And change the board at IDE to TrueRadio. And dont forget to change to other board types like Arduino if you are working with arduino board.
+Next step is compiling the code as sent by christof. It is the file analog_node_Christof in this folder. You have to see which node is being 
+programmed and should un-comment it in code and also un-comment its keys in the code. 
+Then go to Sketch in Arduino IDE and select export compiled binary. It will lead to a hex file with end as ino.standard.hex
+
+We will be using this file to program the sensors board. 
+Put the power jack to give power to board.
+Put the mySmartUSB end into the board. Take care as you put it in the board. If you have put it wrong it will not program.
+
+Using the myAVRprogramTool select Burn and select burn to Flash. Also select the correct hardware ATmega328p at the programmer. Then select the hex file with end as ino.standard.hex (that is mentioned above) and burn to board. The light in mySmartUSB will blink demonstrating the successful programming.
+
+Check at the thingsnetwork the traffic at the Gateway, the respective node should appear transmitting. You can also check in the application.
+
+ 
