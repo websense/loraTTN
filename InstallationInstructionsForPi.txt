@@ -1,0 +1,18 @@
+Instructions:
+#Install MQTT library
+
+git clone https://github.com/eclipse/paho.mqtt.python
+sudo apt install python3-setuptools
+cd paho.mqtt.python
+sudo python3 setup.py install
+
+#Create sqlite 3 DB
+sudo apt install sqlite3
+sqlite3 messages.db < GPS_TABLE_CREATION.sql
+
+# Run script
+nohup python3 MQTT_TTC_Python_Client_GPS.py >> logs.txt
+
+
+
+
