@@ -185,28 +185,3 @@ class loraMessage(object):
                 print("System so bad rollback will not work, crashing out completely")
                 raise
 
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-
